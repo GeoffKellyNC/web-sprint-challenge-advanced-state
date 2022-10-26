@@ -1,34 +1,89 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import * as actions from '../state/action-creators'
 
-export default function Quiz(props) {
+ function Quiz(props) {
+  const { 
+    selectedAnswer, 
+    quiz, 
+    setQuiz,
+    postAnswer,
+    setSelectedAnswer,
+    setInfoMessage} = props
+
+    const [quizSet, setQuizSet] = useState(false)
+    const [answerChoose, setAnswerChoose] = useState(false)
+
+    const setUp = async () => {
+      await setQuiz()
+      setQuizSet(true)
+    }
+
+    useEffect(() => {
+        setUp()
+
+
+    }, [])
+
+    const handleSubmit = async () => {
+      postAnswer(quiz.quiz_id, selectedAnswer)
+      setQuizSet(false)
+      await setUp()
+      setInfoMessage()
+    }
+
+    
   return (
     <div id="wrapper">
       {
         // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
-        true ? (
+        quizSet ? (
           <>
-            <h2>What is a closure?</h2>
+            <h2>{quiz.question}</h2>
 
             <div id="quizAnswers">
-              <div className="answer selected">
-                A function
-                <button>
-                  SELECTED
+              <div className= {`answer ${selectedAnswer === quiz.answers[0].answer_id ? 'selected' : ''}`}>
+                {quiz.answers[0].text}
+
+                <button onClick={() => {
+                  setSelectedAnswer(quiz.answers[0].answer_id)
+                  setAnswerChoose(true)
+                }}>
+                  {selectedAnswer === quiz.answers[0].answer_id ? 'SELECTED' : 'select'}
                 </button>
               </div>
 
-              <div className="answer">
-                An elephant
-                <button>
-                  Select
+              <div  className= {`answer ${selectedAnswer === quiz.answers[1].answer_id ? 'selected' : ''  }`}>
+                {quiz.answers[1].text}
+                <button onClick = {() => {
+                  setSelectedAnswer(quiz.answers[1].answer_id)
+                  setAnswerChoose(true)
+                }}>
+                  {selectedAnswer === quiz.answers[1].answer_id ? 'SELECTED' : 'select'}
                 </button>
               </div>
             </div>
 
-            <button id="submitAnswerBtn">Submit answer</button>
+            {
+              answerChoose ? (
+                <button id="submitAnswerBtn" onClick = {handleSubmit}>Submit answer</button>
+              ) : (
+                <button id="submitAnswerBtn" disabled>Submit answer</button>
+              )
+            }
           </>
         ) : 'Loading next quiz...'
       }
     </div>
   )
 }
+
+const mapStateToProps = state => {
+  return ({
+    selectedAnswer: state.selectedAnswer,
+    quiz: state.quiz,
+
+  })
+}
+
+export default connect(mapStateToProps, actions)(Quiz)
