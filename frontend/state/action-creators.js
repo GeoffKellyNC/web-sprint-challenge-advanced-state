@@ -24,6 +24,7 @@ export const setSelectedAnswer = (id) => (dispatch) => {
     return
   }
 
+
   dispatch({
     type: types.SET_SELECTED_ANSWER,
     payload: id
@@ -41,7 +42,6 @@ export const setQuiz = () => async (dispatch) => {
       payload: res.data
     })
 
-    localStorage.setItem('quiz', JSON.stringify(res.data))
 
     return
 
