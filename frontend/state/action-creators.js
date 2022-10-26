@@ -101,7 +101,7 @@ export const postQuiz = (newQuestion, newTrueAnswer, newFalseAnswer) => async (d
 
     dispatch({
       type: types.SET_INFO_MESSAGE,
-      payload: `Congrats: ${newQuestion} is a great question!`
+      payload: `Congrats: ${res.data.question} is a great question!`
     })
 
     dispatch({
