@@ -180,114 +180,114 @@ describe('Advanced State Sprint Challenge Submission', () => {
       await screen.findByText(ThatIsAShame, queryOptions)
     })
   })
-  // describe('[FORM SCREEN]', () => {
-  //   beforeEach(() => {
-  //     fireEvent.click(formLink())
-  //   })
-  //   test('[10] Typing in inputs changes their , Review handling user input - onChange.', () => {
-  //     fireEvent.change(newQuestionInput(), { target: { value: 'foo' } })
-  //     expect(newQuestionInput()).toHaveValue('foo')
-  //     fireEvent.change(newTrueAnswerInput(), { target: { value: 'bar' } })
-  //     expect(newTrueAnswerInput()).toHaveValue('bar')
-  //     fireEvent.change(newFalseAnswerInput(), { target: { value: 'baz' } })
-  //     expect(newFalseAnswerInput()).toHaveValue('baz')
-  //   })
-  //   test(`[11] The submit button is disabled until all inputs have values more than one character
-  //       in length after trimming leading and trailing whitespace, Review how to conditionally disable a button element.
-  //   `, () => {
-  //     expect(submitNewQuizBtn()).toBeDisabled()
-  //     fireEvent.change(newQuestionInput(), { target: { value: 'question' } })
-  //     expect(submitNewQuizBtn()).toBeDisabled()
-  //     fireEvent.change(newTrueAnswerInput(), { target: { value: 'true' } })
-  //     expect(submitNewQuizBtn()).toBeDisabled()
-  //     fireEvent.change(newFalseAnswerInput(), { target: { value: 'false' } })
-  //     expect(submitNewQuizBtn()).toBeEnabled()
-  //     fireEvent.change(newQuestionInput(), { target: { value: '   ' } })
-  //     expect(submitNewQuizBtn()).toBeDisabled()
-  //     fireEvent.change(newQuestionInput(), { target: { value: '  question  ' } })
-  //     expect(submitNewQuizBtn()).toBeEnabled()
-  //     fireEvent.change(newTrueAnswerInput(), { target: { value: '   ' } })
-  //     expect(submitNewQuizBtn()).toBeDisabled()
-  //     fireEvent.change(newTrueAnswerInput(), { target: { value: '  true  ' } })
-  //     expect(submitNewQuizBtn()).toBeEnabled()
-  //   })
-  //   test(`[12] Successful submit of new quiz
-  //       - Displays the correct success message at the top of the screen
-  //       - Empties out the form, Review using data from state and how to reset state.
-  //   `, async () => {
-  //     fireEvent.change(newQuestionInput(), { target: { value: 'foobarbaz?' } })
-  //     fireEvent.change(newTrueAnswerInput(), { target: { value: 'bar' } })
-  //     fireEvent.change(newFalseAnswerInput(), { target: { value: 'baz' } })
-  //     fireEvent.click(submitNewQuizBtn())
-  //     await screen.findByText('Congrats: "foobarbaz?" is a great question!', queryOptions, waitForOptions)
-  //     expect(newQuestionInput()).toHaveValue('')
-  //     expect(newTrueAnswerInput()).toHaveValue('')
-  //     expect(newFalseAnswerInput()).toHaveValue('')
-  //   })
-  //   test(`[13] Successful submit of new quiz
-  //       - Adds the quiz to the roster of quizzes,  Review how to use axios to make POST requests.
-  //   `, async () => {
-  //     fireEvent.change(newQuestionInput(), { target: { value: 'foobarbaz?' } })
-  //     fireEvent.change(newTrueAnswerInput(), { target: { value: 'bar' } })
-  //     fireEvent.change(newFalseAnswerInput(), { target: { value: 'baz' } })
-  //     fireEvent.click(submitNewQuizBtn())
-  //     await screen.findByText('Congrats: "foobarbaz?" is a great question!', queryOptions, waitForOptions)
-  //     fireEvent.click(quizLink())
-  //     await screen.findByText(WhatIsClosure, queryOptions, waitForOptions)
-  //     let answerA = screen.queryByText(AFunction, queryOptions)
-  //     fireEvent.click(answerA.querySelector('button'))
-  //     fireEvent.click(submitAnswerBtn())
-  //     await screen.findByText(WhatIsPromise, queryOptions, waitForOptions)
-  //     screen.getByText(ThatIsCorrect, queryOptions)
-  //     answerA = screen.queryByText(AValue, queryOptions)
-  //     fireEvent.click(answerA.querySelector('button'))
-  //     fireEvent.click(submitAnswerBtn())
-  //     await screen.findByText(WhatIsModule, queryOptions, waitForOptions)
-  //     screen.getByText(ThatIsCorrect, queryOptions)
-  //     answerA = screen.queryByText(AFile, queryOptions)
-  //     fireEvent.click(answerA.querySelector('button'))
-  //     fireEvent.click(submitAnswerBtn())
-  //     await screen.findByText('foobarbaz?', queryOptions, waitForOptions)
-  //   })
-  // })
-  // describe('[APP STATE]', () => {
-  //   test(`[14] The state of the wheel survives route changes:
-  //       - Moving the wheel, navigating away and back, should keep the position of the "B", Review how to persist state using global state with redux.
-  //   `, async () => {
-  //     testCogs(0)
-  //     fireEvent.click(clockwiseBtn())
-  //     testCogs(1)
-  //     fireEvent.click(formLink())
-  //     fireEvent.click(wheelLink())
-  //     testCogs(1)
-  //   })
-  //   test(`[15] The state of the quiz survives route changes:
-  //       - Selecting an answer, navigating away and back, should keep the selected answer
-  //       - Navigating away and back shouldn't cause a new quiz to be fetched from the API, Review how to persist state using global state with redux.
-  //   `, async () => {
-  //     fireEvent.click(quizLink())
-  //     await screen.findByText(WhatIsClosure, queryOptions, waitForOptions)
-  //     let answerB = screen.queryByText(AnElephant, queryOptions)
-  //     fireEvent.click(answerB.querySelector('button'))
-  //     expect(answerB.textContent).toMatch(/SELECTED/)
-  //     fireEvent.click(formLink())
-  //     fireEvent.click(quizLink())
-  //     answerB = screen.queryByText(AnElephant, queryOptions)
-  //     fireEvent.click(answerB.querySelector('button'))
-  //     expect(answerB.textContent).toMatch(/SELECTED/)
-  //   })
-  //   test(`[16] The state of the form survives route changes
-  //       - Filling out the form, navigating away and back, the entered data should ,  Review how to persist state using global state with redux.
-  //   `, async () => {
-  //     fireEvent.click(formLink())
-  //     fireEvent.change(newQuestionInput(), { target: { value: 'foo' } })
-  //     fireEvent.change(newTrueAnswerInput(), { target: { value: 'bar' } })
-  //     fireEvent.change(newFalseAnswerInput(), { target: { value: 'baz' } })
-  //     fireEvent.click(wheelLink())
-  //     fireEvent.click(formLink())
-  //     expect(newQuestionInput()).toHaveValue('foo')
-  //     expect(newTrueAnswerInput()).toHaveValue('bar')
-  //     expect(newFalseAnswerInput()).toHaveValue('baz')
-  //   })
-  // })
+  describe('[FORM SCREEN]', () => {
+    beforeEach(() => {
+      fireEvent.click(formLink())
+    })
+    test('[10] Typing in inputs changes their , Review handling user input - onChange.', () => {
+      fireEvent.change(newQuestionInput(), { target: { value: 'foo' } })
+      expect(newQuestionInput()).toHaveValue('foo')
+      fireEvent.change(newTrueAnswerInput(), { target: { value: 'bar' } })
+      expect(newTrueAnswerInput()).toHaveValue('bar')
+      fireEvent.change(newFalseAnswerInput(), { target: { value: 'baz' } })
+      expect(newFalseAnswerInput()).toHaveValue('baz')
+    })
+    test(`[11] The submit button is disabled until all inputs have values more than one character
+        in length after trimming leading and trailing whitespace, Review how to conditionally disable a button element.
+    `, () => {
+      expect(submitNewQuizBtn()).toBeDisabled()
+      fireEvent.change(newQuestionInput(), { target: { value: 'question' } })
+      expect(submitNewQuizBtn()).toBeDisabled()
+      fireEvent.change(newTrueAnswerInput(), { target: { value: 'true' } })
+      expect(submitNewQuizBtn()).toBeDisabled()
+      fireEvent.change(newFalseAnswerInput(), { target: { value: 'false' } })
+      expect(submitNewQuizBtn()).toBeEnabled()
+      fireEvent.change(newQuestionInput(), { target: { value: '   ' } })
+      expect(submitNewQuizBtn()).toBeDisabled()
+      fireEvent.change(newQuestionInput(), { target: { value: '  question  ' } })
+      expect(submitNewQuizBtn()).toBeEnabled()
+      fireEvent.change(newTrueAnswerInput(), { target: { value: '   ' } })
+      expect(submitNewQuizBtn()).toBeDisabled()
+      fireEvent.change(newTrueAnswerInput(), { target: { value: '  true  ' } })
+      expect(submitNewQuizBtn()).toBeEnabled()
+    })
+    test(`[12] Successful submit of new quiz
+        - Displays the correct success message at the top of the screen
+        - Empties out the form, Review using data from state and how to reset state.
+    `, async () => {
+      fireEvent.change(newQuestionInput(), { target: { value: 'foobarbaz?' } })
+      fireEvent.change(newTrueAnswerInput(), { target: { value: 'bar' } })
+      fireEvent.change(newFalseAnswerInput(), { target: { value: 'baz' } })
+      fireEvent.click(submitNewQuizBtn())
+      await screen.findByText('Congrats: "foobarbaz?" is a great question!', queryOptions, waitForOptions)
+      expect(newQuestionInput()).toHaveValue('')
+      expect(newTrueAnswerInput()).toHaveValue('')
+      expect(newFalseAnswerInput()).toHaveValue('')
+    })
+    test(`[13] Successful submit of new quiz
+        - Adds the quiz to the roster of quizzes,  Review how to use axios to make POST requests.
+    `, async () => {
+      fireEvent.change(newQuestionInput(), { target: { value: 'foobarbaz?' } })
+      fireEvent.change(newTrueAnswerInput(), { target: { value: 'bar' } })
+      fireEvent.change(newFalseAnswerInput(), { target: { value: 'baz' } })
+      fireEvent.click(submitNewQuizBtn())
+      await screen.findByText('Congrats: "foobarbaz?" is a great question!', queryOptions, waitForOptions)
+      fireEvent.click(quizLink())
+      await screen.findByText(WhatIsClosure, queryOptions, waitForOptions)
+      let answerA = screen.queryByText(AFunction, queryOptions)
+      fireEvent.click(answerA.querySelector('button'))
+      fireEvent.click(submitAnswerBtn())
+      await screen.findByText(WhatIsPromise, queryOptions, waitForOptions)
+      screen.getByText(ThatIsCorrect, queryOptions)
+      answerA = screen.queryByText(AValue, queryOptions)
+      fireEvent.click(answerA.querySelector('button'))
+      fireEvent.click(submitAnswerBtn())
+      await screen.findByText(WhatIsModule, queryOptions, waitForOptions)
+      screen.getByText(ThatIsCorrect, queryOptions)
+      answerA = screen.queryByText(AFile, queryOptions)
+      fireEvent.click(answerA.querySelector('button'))
+      fireEvent.click(submitAnswerBtn())
+      await screen.findByText('foobarbaz?', queryOptions, waitForOptions)
+    })
+  })
+  describe('[APP STATE]', () => {
+    test(`[14] The state of the wheel survives route changes:
+        - Moving the wheel, navigating away and back, should keep the position of the "B", Review how to persist state using global state with redux.
+    `, async () => {
+      testCogs(0)
+      fireEvent.click(clockwiseBtn())
+      testCogs(1)
+      fireEvent.click(formLink())
+      fireEvent.click(wheelLink())
+      testCogs(1)
+    })
+    test(`[15] The state of the quiz survives route changes:
+        - Selecting an answer, navigating away and back, should keep the selected answer
+        - Navigating away and back shouldn't cause a new quiz to be fetched from the API, Review how to persist state using global state with redux.
+    `, async () => {
+      fireEvent.click(quizLink())
+      await screen.findByText(WhatIsClosure, queryOptions, waitForOptions)
+      let answerB = screen.queryByText(AnElephant, queryOptions)
+      fireEvent.click(answerB.querySelector('button'))
+      expect(answerB.textContent).toMatch(/SELECTED/)
+      fireEvent.click(formLink())
+      fireEvent.click(quizLink())
+      answerB = screen.queryByText(AnElephant, queryOptions)
+      fireEvent.click(answerB.querySelector('button'))
+      expect(answerB.textContent).toMatch(/SELECTED/)
+    })
+    test(`[16] The state of the form survives route changes
+        - Filling out the form, navigating away and back, the entered data should ,  Review how to persist state using global state with redux.
+    `, async () => {
+      fireEvent.click(formLink())
+      fireEvent.change(newQuestionInput(), { target: { value: 'foo' } })
+      fireEvent.change(newTrueAnswerInput(), { target: { value: 'bar' } })
+      fireEvent.change(newFalseAnswerInput(), { target: { value: 'baz' } })
+      fireEvent.click(wheelLink())
+      fireEvent.click(formLink())
+      expect(newQuestionInput()).toHaveValue('foo')
+      expect(newTrueAnswerInput()).toHaveValue('bar')
+      expect(newFalseAnswerInput()).toHaveValue('baz')
+    })
+  })
 })
