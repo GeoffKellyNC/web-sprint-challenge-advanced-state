@@ -15,6 +15,10 @@ import * as actions from '../state/action-creators'
     const [answerChoose, setAnswerChoose] = useState(false)
 
     const setUp = async () => {
+      if (localStorage.getItem('quizData')){
+        setQuizSet(true)
+        return
+      }
       await setQuiz()
       setQuizSet(true)
     }
@@ -28,7 +32,9 @@ import * as actions from '../state/action-creators'
     const handleSubmit = async () => {
       postAnswer(quiz.quiz_id, selectedAnswer)
       setQuizSet(false)
-      await setUp()
+      localStorage.removeItem('quizData')
+      await setQuiz()
+      setQuizSet(true)
       setInfoMessage()
     }
 
