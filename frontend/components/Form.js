@@ -22,8 +22,8 @@ export function Form(props) {
     const { name, value } = evt.target
     inputChange(name, value)
   // set button disabled if there are no values in the inputs
-    const { newQuestion, newTrueAnswer, newFalseAnswer } = form
-    if (newQuestion.length > 1 &&  newTrueAnswer.length > 1 && newFalseAnswer.length > 1) {
+    const { newQuestion, newTrueAnswer } = form
+    if (newQuestion.trim().length > 0 &&  newTrueAnswer.trim().length > 0) {
       setDisabled(false)
     } else {
       setDisabled(true)
@@ -36,7 +36,7 @@ export function Form(props) {
     const { newQuestion, newTrueAnswer, newFalseAnswer } = form
     postQuiz(newQuestion, newTrueAnswer, newFalseAnswer)
     setDisabled(true)
-  }
+  } 
 
 
 
