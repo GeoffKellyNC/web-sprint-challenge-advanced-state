@@ -21,13 +21,15 @@ export function Form(props) {
   const onChange = evt => {
     const { name, value } = evt.target
     inputChange(name, value)
-  // set button disabled if there are no values in the inputs
-    const { newQuestion, newTrueAnswer } = form
-    if (newQuestion.trim().length > 0 &&  newTrueAnswer.trim().length > 0) {
-      setDisabled(false)
-    } else {
-      setDisabled(true)
-    }
+
+    const formInputs = document.querySelectorAll('input')
+    formInputs.forEach(input => {
+      if (input.value.trim().length > 0) {
+        setDisabled(false)
+      } else {
+        setDisabled(true)
+      }
+    })
 
   }
  
