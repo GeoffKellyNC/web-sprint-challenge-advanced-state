@@ -27,7 +27,7 @@ function quiz(state = initialQuizState, action) {
     case types.SET_QUIZ_INTO_STATE:
       return action.payload
     default:
-      return localStorage.getItem('quizData') ? JSON.parse(localStorage.getItem('quizData')) : state
+      return localStorage.getItem('quizData') ? JSON.parse(localStorage.getItem('quizData')) : null
   }
 }
 

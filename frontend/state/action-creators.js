@@ -37,12 +37,12 @@ export const setQuiz = () => async (dispatch) => {
   try {
     const res = await axios.get('http://localhost:9000/api/quiz/next')
 
-    localStorage.setItem('quizData', JSON.stringify(res.data))
-
+    
     dispatch({
       type: types.SET_QUIZ_INTO_STATE,
       payload: res.data
     })
+    localStorage.setItem('quizData', JSON.stringify(res.data))
 
 
     return
@@ -66,11 +66,8 @@ export function resetForm() { }
 
 export const postAnswer = (quiz_id, answer_id) => async (dispatch) => {
   try {
-    console.log('quiz_id', quiz_id)
-    console.log('answer_id', answer_id)
     const res = await axios.post('http://localhost:9000/api/quiz/answer', {
       quiz_id, answer_id })
-    console.log('res', res) //! remove
 
     dispatch({
       type: types.SET_INFO_MESSAGE,

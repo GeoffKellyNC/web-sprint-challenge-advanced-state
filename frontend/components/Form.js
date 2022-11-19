@@ -22,14 +22,18 @@ export function Form(props) {
     const { name, value } = evt.target
     inputChange(name, value)
 
-    const formInputs = document.querySelectorAll('input')
-    formInputs.forEach(input => {
-      if (input.value.trim().length > 0) {
-        setDisabled(false)
-      } else {
-        setDisabled(true)
-      }
-    })
+    const newTrueAnswer = document.querySelector('#newTrueAnswer')
+    const newQuestionAnswer = document.querySelector('#newQuestion')
+    const newFalseAnswer = document.querySelector('#newFalseAnswer')
+
+
+    if (newTrueAnswer.value.trim().length > 1 && newQuestionAnswer.value.trim().length > 1 && newFalseAnswer.value.trim().length > 1){
+      setDisabled(false)
+      return
+    }else{
+      setDisabled(true)
+    }
+
 
   }
  

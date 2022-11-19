@@ -35,7 +35,7 @@ import * as actions from '../state/action-creators'
       localStorage.removeItem('quizData')
       await setQuiz()
       setQuizSet(true)
-      setInfoMessage()
+      // setInfoMessage()
     }
 
     
