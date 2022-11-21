@@ -15,7 +15,7 @@ import * as actions from '../state/action-creators'
     const [answerChoose, setAnswerChoose] = useState(false)
 
     const setUp = async () => {
-      if (localStorage.getItem('quizData')){
+      if (quiz){
         setQuizSet(true)
         return
       }
@@ -32,7 +32,6 @@ import * as actions from '../state/action-creators'
     const handleSubmit = async () => {
       postAnswer(quiz.quiz_id, selectedAnswer)
       setQuizSet(false)
-      localStorage.removeItem('quizData')
       await setQuiz()
       setQuizSet(true)
       // setInfoMessage()
@@ -61,7 +60,8 @@ import * as actions from '../state/action-creators'
 
               <div  className= {`answer ${selectedAnswer === quiz.answers[1].answer_id ? 'selected' : ''  }`}>
                 {quiz.answers[1].text}
-                <button onClick = {() => {
+                <button onClick = {(e) => {
+                  e.preventDefault()
                   setSelectedAnswer(quiz.answers[1].answer_id)
                   setAnswerChoose(true)
                 }}>

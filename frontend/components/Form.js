@@ -7,16 +7,10 @@ export function Form(props) {
   const [disabled, setDisabled] = useState(true)
 
 
-
-
   useEffect(() => {
     
   }, [])
 
-
- 
-
- 
 
   const onChange = evt => {
     const { name, value } = evt.target
