@@ -5,7 +5,6 @@ export function moveClockwise() {
   return {
     type: types.MOVE_CLOCKWISE
   }
-
 }
 
 export function moveCounterClockwise() { 
@@ -61,7 +60,11 @@ export const inputChange = (name, value) => (dispatch) => {
   })
 }
 
-export function resetForm() { }
+export function resetForm() { 
+  return {
+    type: types.RESET_FORM
+  }
+}
 
 
 
@@ -101,12 +104,12 @@ export const postQuiz = (newQuestion, newTrueAnswer, newFalseAnswer) => async (d
 
     dispatch({
       type: types.SET_INFO_MESSAGE,
-      payload: `Congrats: ${res.data.question} is a great question!`
+      payload: `Congrats: "${res.data.question}" is a great question!`
     })
 
-    dispatch({
-      type: types.RESET_FORM
-    })
+    // payload: `Congrats: ${res.data.question} is a great question!`
+
+
     return
 
   } catch (error) {

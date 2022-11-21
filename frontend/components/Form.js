@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import * as actionCreators from '../state/action-creators'
 
 export function Form(props) {
-  const { form, inputChange, postQuiz } = props
+  const { form, inputChange, postQuiz, resetForm } = props
   const [disabled, setDisabled] = useState(true)
-
-
-  useEffect(() => {
-    
-  }, [])
-
 
   const onChange = evt => {
     const { name, value } = evt.target
@@ -27,23 +21,15 @@ export function Form(props) {
     }else{
       setDisabled(true)
     }
-
-
   }
- 
+
   const onSubmit = evt => {
     evt.preventDefault()
     const { newQuestion, newTrueAnswer, newFalseAnswer } = form
-    postQuiz(newQuestion, newTrueAnswer, newFalseAnswer)
+    const message = postQuiz(newQuestion, newTrueAnswer, newFalseAnswer)
+    resetForm()
     setDisabled(true)
   } 
-
-
-
-
-  // console.log('render')
-
-
 
   return (
     <form id="form" onSubmit={onSubmit}>
